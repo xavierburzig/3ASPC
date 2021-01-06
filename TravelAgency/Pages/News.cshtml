@@ -1,0 +1,38 @@
+﻿@page "{id}"
+@{ 
+    var id = long.Parse((string)RouteData.Values["id"]);
+    var travel = await TravelsService.FindAsync(id);
+
+    ViewData["Title"] = travel.Name;
+}
+
+<div class="row travel">
+
+    <div class="col-md-8">
+
+        <div class="col-md-12">
+
+            <span class="description">
+                @travel.Description
+            </span>
+
+            <hr />
+        </div>
+
+        <div class="ingredients col-md-4">
+            <h4>Activités</h4>
+            <ul>
+                @foreach (var activity in travel.ActivitiesList)
+                {
+                    <li>@activity</li>
+                }
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="col-md-4 text-right">
+        <img class="img img-thumbnail" src="@travel.GetInlineImageSrc()" />
+    </div>
+
+</div>

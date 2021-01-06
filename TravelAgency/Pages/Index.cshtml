@@ -1,0 +1,19 @@
+﻿@page
+@{ var travels = await TravelsService.GetAllAsync(); }
+
+@section Title {
+    <h2 class="title">My Favorite Travels</h2>
+    <a asp-page="/Admin/AddEditTravel" class="add-travel btn btn-primary">Add Travel</a>
+}
+
+<div class="row travels">
+
+    @foreach (var travel in travels)
+    {
+<div class="travel col-md-4">
+    <img class="img img-thumbnail" src="@travel.GetInlineImageSrc()" />
+    <h3><a asp-page="/Travel" asp-route-id="@travel.Id">@travel.Name</a></h3>
+    <p>@travel.Description</p>
+</div>}
+
+</div>
