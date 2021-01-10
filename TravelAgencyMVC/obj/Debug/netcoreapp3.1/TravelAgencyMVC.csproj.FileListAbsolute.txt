@@ -1,0 +1,7 @@
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.AssemblyInfoInputs.cache
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.AssemblyInfo.cs
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.csproj.CoreCompileInputs.cache
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.RazorAssemblyInfo.cache
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.RazorAssemblyInfo.cs
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgencyMVC\obj\Debug\netcoreapp3.1\TravelAgencyMVC.csprojAssemblyReference.cache

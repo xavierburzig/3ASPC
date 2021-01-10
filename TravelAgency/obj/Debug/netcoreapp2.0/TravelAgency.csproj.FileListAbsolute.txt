@@ -39,10 +39,10 @@ C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\bin\Debug\netcoreapp2.0\Travel
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\bin\Debug\netcoreapp2.0\TravelAgency.runtimeconfig.dev.json
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\bin\Debug\netcoreapp2.0\TravelAgency.dll
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\bin\Debug\netcoreapp2.0\TravelAgency.pdb
-C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.csprojAssemblyReference.cache
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.AssemblyInfoInputs.cache
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.AssemblyInfo.cs
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.csproj.CoreCompileInputs.cache
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.dll
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.pdb
 C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.genruntimeconfig.cache
+C:\Users\xavier.burzig\Desktop\3ASPC\TravelAgency\obj\Debug\netcoreapp2.0\TravelAgency.csprojAssemblyReference.cache

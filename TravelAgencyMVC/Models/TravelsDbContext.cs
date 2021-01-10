@@ -9,7 +9,6 @@ namespace TravelAgency.Models
         public TravelsDbContext(DbContextOptions<TravelsDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
             this.EnsureSeedData();
         }
     }
