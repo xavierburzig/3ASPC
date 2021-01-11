@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,25 +11,18 @@ namespace TravelAgency
 {
     public class Startup
     {
-        //public IConfiguration Configuration { get; }
-
-        //public Startup(IConfiguration configuration)
-        //{
-        //    Configuration = configuration;
-        //}
         private readonly IConfiguration configuration;
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
-        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie();
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //        .AddCookie();
 
             services.AddMvc()
                     .AddRazorPagesOptions(options => {
@@ -36,6 +30,8 @@ namespace TravelAgency
                         options.Conventions.AuthorizeFolder("/Admin");
                         options.Conventions.AuthorizeFolder("/Account");
                         options.Conventions.AllowAnonymousToPage("/Account/Login");
+                        options.Conventions.AllowAnonymousToPage("/Account/Register");
+
                     });
 
             services.AddScoped<ITravelsService, TravelsService>();
@@ -46,6 +42,13 @@ namespace TravelAgency
                 var connectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = TravelAgency; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
                 options.UseSqlServer(connectionString);
             });
+            services.AddDbContext<IdentityDataContext>(options =>
+            {
+                var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TravelAgency_Identity;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +58,7 @@ namespace TravelAgency
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseIdentity();
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
