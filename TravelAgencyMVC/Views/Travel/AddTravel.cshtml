@@ -1,0 +1,62 @@
+﻿@model Travel
+
+<div class="row">
+    @*@if (@Model.Id == null)
+        {
+            <h2>
+                Add Travel
+            </h2>
+        }
+        else
+        {
+            <h2>
+                Edit Travel
+            </h2>
+        }
+        <hr />*@
+</div>
+
+<form method="post" class="form-horizontal" enctype="multipart/form-data" asp-action="Create">
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+        <label asp-for="Name" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea rows="3" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Activities" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea rows="5" asp-for="Activities" class="form-control"></textarea>
+            <span asp-validation-for="Activities"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input type="file" asp-for="Image" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @*<a asp-action="Create" asp-controller="Travel" asp-route-id="@Model.Id">Save</a>
+                <a asp-action="Delete" asp-controller="Travel" asp-route-id="@Model.Id">Delete</a>*@
+
+
+            <form class="form-group" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn btn-primary">Save</button>
+            </form>
+            @*<form method="post" action="@Url.Action("Delete","Travel")">
+                    <button type="submit" class="btn btn btn-danger">Delete</button>
+                </form>*@
+        </div>
+    </div>
+</form>

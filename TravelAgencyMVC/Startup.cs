@@ -1,12 +1,18 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TravelAgency.Models.Interfaces;
-using TravelAgency.Models.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TravelAgency.Services.Models;
+using TravelAgencyMVC.Models;
+using TravelAgencyMVC.Models.Interfaces;
 
 namespace TravelAgencyMVC
 {
@@ -23,18 +29,21 @@ namespace TravelAgencyMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie();
 
-            //services.AddMvc()
-            //        .AddRazorPagesOptions(options => {
+            services.AddDbContext<IdentityDataContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("IdentityDataContext");
+                options.UseSqlServer(connectionString);
+            });
 
-            //            options.Conventions.AuthorizeFolder("/Admin");
-            //            options.Conventions.AuthorizeFolder("/Account");
-            //            options.Conventions.AllowAnonymousToPage("/Account/Login");
-            //        });
-
+            services.AddDbContext<TravelsDbContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("TravelDbContext");
+                options.UseSqlServer(connectionString);
+            });
             services.AddTransient<ITravelsService, TravelsService>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +63,10 @@ namespace TravelAgencyMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

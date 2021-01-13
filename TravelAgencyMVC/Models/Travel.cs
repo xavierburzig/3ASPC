@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using TravelAgency.Helpers;
+using System.Linq;
+using System.Threading.Tasks;
+using TravelAgencyMVC.Helpers;
 using static System.Environment;
 
-namespace TravelAgency.Models
+namespace TravelAgencyMVC.Models
 {
     public class Travel
     {
         public long Id { get; set; }
-        
+
         [Required]
         [StringLength(100, MinimumLength = 5,
             ErrorMessage = "Hey - you've gotta give a name between 5 and 100 characters long!")]
         public string Name { get; set; }
-        
+
         [Required]
         public string Description { get; set; }
-        
+
         [Required]
         public string Activities { get; set; }
 
@@ -32,7 +35,7 @@ namespace TravelAgency.Models
 
         public string ImageContentType { get; set; }
 
-        public string GetInlineImageSrc ()
+        public string GetInlineImageSrc()
         {
             if (Image == null || ImageContentType == null)
                 return null;
@@ -55,7 +58,7 @@ namespace TravelAgency.Models
                 Image = Utils.ConvertToBase64(stream);
             }
         }
-        
+
         #endregion
     }
 }

@@ -1,59 +1,69 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Travel Agency</title>
-    <link rel="stylesheet" href="~/site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TravelAgencyMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TravelAgencyMVC</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Login","Account")">Login</a>
+                            }
+                            else
+                            {
 
-    <header class="container site-header">
-        <div class="row">
-            <h1 class="main-logo"><a href="/">Travel Agency</a></h1>
-        </div>
-        <div class="row">
-            <nav class="navbar">
-                <ul class="nav nav-pills">
-                    <li><a href="/News">News</a></li>
-                    <li><a href="/Blog">Blog</a></li>
-                    <li><a class="active" href="/">Travels</a></li>
-                    <li><a href="/Contact">Contact</a></li>
-                </ul>
-                <ul class="nav nav-pills">
-                    <li>
-                        @if(!User.Identity.IsAuthenticated) {
-                            <a asp-page="/Account/Login">Login</a>
-                        } else {
-                            <form method="post" asp-page="/Account/Login" asp-page-handler="Logout">
-                                <div class="input-group">
-                                    <span>@User.Identity.Name</span>
-                                    <button type="submit" class="btn btn-link">Logout</button>
-                                </div>
-                            </form>
-                        }
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="row">
-            @if (IsSectionDefined("Title"))
-            {
-                @RenderSection("Title", required: false)
-            } else {
-                <h2 class="title">@ViewData["Title"]</h2>
-            }
-        </div>
+                                <form method="post" action="@Url.Action("Logout","Account")">
+                                    <div class="input-group">
+                                        <span>@User.Identity.Name</span>
+                                        <button type="submit" class="btn btn-link">Logout</button>
+                                    </div>
+                                </form>
+                                <form method="post" action="@Url.Action("AddTravel","Travel")">
+                                    <div class="input-group">
+                                        <button type="submit" class="btn btn-link">Add Travel</button>
+                                    </div>
+                                </form>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
     <div class="container">
-
-       @RenderBody()
-            
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
-    <footer>
-        <div class="text-center">
-            <span class="text-muted">Last Rendered: @DateTime.Now </span>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - TravelAgencyMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

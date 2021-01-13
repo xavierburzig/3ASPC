@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAgency.Helpers
+namespace TravelAgencyMVC.Helpers
 {
     public static class Utils
     {

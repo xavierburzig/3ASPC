@@ -1,19 +1,24 @@
-﻿@page
-@{ var travels = await TravelsService.GetAllAsync(); }
-
-@section Title {
-    <h2 class="title">My Favorite Travels</h2>
-    <a asp-page="/Admin/AddEditTravel" class="add-travel btn btn-primary">Add Travel</a>
+﻿@{
+    ViewData["Title"] = "Home Page";
 }
-
+@model IEnumerable<Travel>
 <div class="row travels">
 
-    @foreach (var travel in travels)
+    @foreach (var travel in Model)
     {
-        <div class="travel col-md-4">
-            <img class="img img-thumbnail" src="@travel.GetInlineImageSrc()" />
-            <h3><a asp-page="/Travel" asp-route-id="@travel.Id">@travel.Name</a></h3>
-            <p>@travel.Description</p>
-        </div>}
-
+    <div class="travel col-md-4">
+        <img class="img img-thumbnail" src="@travel.GetInlineImageSrc()" />
+        <form id="travel" method="post" action="@Url.Action("Travel", "Home", new { id = travel.Id })">
+            <h3><a href="#" onclick="document.getElementById('travel').submit()">@travel.Name</a></h3>
+        </form>
+        <p>@travel.Description</p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @*<form id="edit" method="post" action="@Url.Action("Edit", "Home", new { id = travel.Id })">
+                <h3><a href="#" onclick="document.getElementById('edit').submit()">@travel.Name</a></h3>
+            </form>*@
+            <a asp-action="Edit" asp-route-id="@travel.Id">Edit</a>
+        }
+    </div>}
+    
 </div>

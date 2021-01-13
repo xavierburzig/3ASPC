@@ -1,0 +1,30 @@
+﻿@model Travel
+
+<div class="row">
+    <h2>@Model.Name</h2>
+    <hr />
+</div>
+
+<div class="row travel">
+    <div class="col-md-8">
+        <div class="col-md-12">
+
+            <span class="description">
+                @Model.Description
+            </span>
+            <hr />
+        </div>
+        <div class="ingredients col-md-4">
+            <h4>Activités</h4>
+            <ul>
+                @foreach (var activity in Model.ActivitiesList)
+                {
+    <li>@activity</li>
+}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4 text-right">
+        <img class="img img-thumbnail" src="@Model.GetInlineImageSrc()" />
+    </div>
+</div>
